@@ -1,0 +1,915 @@
+```html
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio & Biodata - Arfan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Navbar / Menu Navigasi Atas -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / Nama -->
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md">
+                        A
+                    </div>
+                    <div>
+                        <span id="navName" class="font-bold text-slate-900 text-lg tracking-tight block leading-none">Arfan</span>
+                        <span id="navStatus" class="text-xs text-slate-500 font-medium">Pelajar</span>
+                    </div>
+                </div>
+
+                <!-- Tombol Aksi Utama (Menu Identitas & Update Data Portofolio) -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <button onclick="openTokenModal('identitas')" 
+                        class="inline-flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-semibold transition-all shadow-sm active:scale-95">
+                        <i class="fa-solid fa-lock text-amber-400"></i>
+                        <span>Menu Identitas</span>
+                    </button>
+                    
+                    <button onclick="openTokenModal('portofolio')" 
+                        class="inline-flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold transition-all shadow-sm active:scale-95">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span class="hidden sm:inline">Isi / Update Data</span>
+                        <span class="sm:hidden">Update</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- Hero & Kartu Ringkasan Profil -->
+        <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
+            <!-- Dekorasi Latar -->
+            <div class="absolute -top-24 -right-24 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6 sm:gap-8">
+                <!-- Avatar -->
+                <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-gradient-to-tr from-blue-500 to-cyan-400 p-1 shadow-lg shrink-0">
+                    <div class="w-full h-full bg-slate-900 rounded-[20px] flex items-center justify-center text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+                        <i class="fa-solid fa-user-astronaut text-blue-400"></i>
+                    </div>
+                </div>
+
+                <!-- Info Utama -->
+                <div class="flex-1 text-center md:text-left space-y-3">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-medium text-blue-200">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>Portofolio & Data Diri Resmi</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                        Halo, Saya <span id="heroName" class="text-blue-400">Arfan</span>
+                    </h1>
+                    <p id="heroBio" class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+                        Seorang <span class="font-semibold text-white">Pelajar</span> yang antusias dalam belajar hal baru, teknologi, dan memiliki hobi bermain game. Selamat datang di halaman portofolio digital saya.
+                    </p>
+
+                    <!-- Tombol Sosial Media & Kontak Cepat -->
+                    <div class="pt-3 flex flex-wrap items-center justify-center md:justify-start gap-3">
+                        <a id="linkWa" href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-medium transition shadow-sm">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span id="textWa">0812-3456-7890</span>
+                        </a>
+                        <a id="linkIg" href="https://instagram.com/arfan.official" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-pink-600 hover:bg-pink-500 text-white text-xs sm:text-sm font-medium transition shadow-sm">
+                            <i class="fa-brands fa-instagram text-base"></i>
+                            <span id="textIg">@arfan.official</span>
+                        </a>
+                        <a id="linkTiktok" href="https://tiktok.com/@arfan.gaming" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-white text-xs sm:text-sm font-medium transition shadow-sm border border-white/10">
+                            <i class="fa-brands fa-tiktok text-base"></i>
+                            <span id="textTiktok">@arfan.gaming</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Data Identitas (Terproteksi / Ringkasan) -->
+        <section id="sectionIdentitas" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Data Identitas Diri</h2>
+                        <p class="text-xs sm:text-sm text-slate-500">Informasi biodata pribadi lengkap (Dilindungi Token/Password untuk pengubahan)</p>
+                    </div>
+                </div>
+                <button onclick="openTokenModal('identitas')" 
+                    class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 text-xs sm:text-sm font-semibold transition">
+                    <i class="fa-solid fa-key"></i>
+                    <span>Buka Menu Edit Identitas</span>
+                </button>
+            </div>
+
+            <!-- Grid Biodata -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-6">
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Nama Lengkap</span>
+                    <span id="dispNama" class="text-base font-bold text-slate-800">Arfan</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Tanggal Lahir</span>
+                    <span id="dispTglLahir" class="text-base font-bold text-slate-800">21 Januari 2012</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Jenis Kelamin</span>
+                    <span id="dispJk" class="text-base font-bold text-slate-800">Pria</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Status</span>
+                    <span id="dispStatus" class="text-base font-bold text-slate-800">Pelajar</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Hobi</span>
+                    <span id="dispHobi" class="text-base font-bold text-slate-800">Main Game</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Nama Orang Tua</span>
+                    <span id="dispOrtu" class="text-base font-bold text-slate-800">Bapak Ahmad & Ibu Siti</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 sm:col-span-2 lg:col-span-3">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Alamat Lengkap</span>
+                    <span id="dispAlamat" class="text-base font-bold text-slate-800">Jalan Ujungsari</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid 6 Bagian Portofolio di Halaman Utama -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- 1. Prestasi -->
+            <section class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl bg-yellow-100 text-yellow-600 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Prestasi</h3>
+                        </div>
+                        <button onclick="openTokenModal('portofolio', 'prestasi')" class="text-xs text-blue-600 hover:underline font-medium">Edit</button>
+                    </div>
+                    <ul id="listPrestasi" class="space-y-3 text-sm text-slate-700">
+                        <!-- Diisi via JavaScript -->
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 2. Keahlian -->
+            <section class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Keahlian</h3>
+                        </div>
+                        <button onclick="openTokenModal('portofolio', 'keahlian')" class="text-xs text-blue-600 hover:underline font-medium">Edit</button>
+                    </div>
+                    <div id="listKeahlian" class="flex flex-wrap gap-2">
+                        <!-- Diisi via JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Riwayat Pendidikan -->
+            <section class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Riwayat Pendidikan</h3>
+                        </div>
+                        <button onclick="openTokenModal('portofolio', 'pendidikan')" class="text-xs text-blue-600 hover:underline font-medium">Edit</button>
+                    </div>
+                    <ul id="listPendidikan" class="space-y-3 text-sm text-slate-700">
+                        <!-- Diisi via JavaScript -->
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 4. Riwayat Penyakit -->
+            <section class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Riwayat Penyakit</h3>
+                        </div>
+                        <button onclick="openTokenModal('portofolio', 'penyakit')" class="text-xs text-blue-600 hover:underline font-medium">Edit</button>
+                    </div>
+                    <ul id="listPenyakit" class="space-y-3 text-sm text-slate-700">
+                        <!-- Diisi via JavaScript -->
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 5. Pengalaman Organisasi -->
+            <section class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Pengalaman Organisasi</h3>
+                        </div>
+                        <button onclick="openTokenModal('portofolio', 'organisasi')" class="text-xs text-blue-600 hover:underline font-medium">Edit</button>
+                    </div>
+                    <ul id="listOrganisasi" class="space-y-3 text-sm text-slate-700">
+                        <!-- Diisi via JavaScript -->
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 6. Karya / Produk -->
+            <section class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Karya / Produk</h3>
+                        </div>
+                        <button onclick="openTokenModal('portofolio', 'karya')" class="text-xs text-blue-600 hover:underline font-medium">Edit</button>
+                    </div>
+                    <ul id="listKarya" class="space-y-3 text-sm text-slate-700">
+                        <!-- Diisi via JavaScript -->
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Bagian Kontak & Media Sosial Footer Card -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900">Hubungi Saya & Media Sosial</h3>
+                    <p class="text-sm text-slate-500 mt-1">Terhubung langsung melalui WhatsApp, Instagram, atau TikTok.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full md:w-auto">
+                    <a id="footerWa" href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center gap-3 p-3.5 rounded-2xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-lg shrink-0">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <span class="text-xs text-emerald-700 font-semibold block">WhatsApp</span>
+                            <span id="footerWaText" class="text-sm font-bold text-slate-900 truncate block">0812-3456-7890</span>
+                        </div>
+                    </a>
+
+                    <a id="footerIg" href="https://instagram.com/arfan.official" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center gap-3 p-3.5 rounded-2xl bg-pink-50 hover:bg-pink-100 border border-pink-200 transition">
+                        <div class="w-10 h-10 rounded-xl bg-pink-600 text-white flex items-center justify-center text-lg shrink-0">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <span class="text-xs text-pink-700 font-semibold block">Instagram</span>
+                            <span id="footerIgText" class="text-sm font-bold text-slate-900 truncate block">@arfan.official</span>
+                        </div>
+                    </a>
+
+                    <a id="footerTiktok" href="https://tiktok.com/@arfan.gaming" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-100 hover:bg-slate-200 border border-slate-300 transition">
+                        <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center text-lg shrink-0">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <span class="text-xs text-slate-600 font-semibold block">TikTok</span>
+                            <span id="footerTiktokText" class="text-sm font-bold text-slate-900 truncate block">@arfan.gaming</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto px-4 py-6 text-center text-xs text-slate-400">
+        &copy; 2026 Portofolio Digital <span id="copyName">Arfan</span>. Dibuat dengan penuh semangat.
+    </footer>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL 1: VERIFIKASI TOKEN / PASSWORD                                  -->
+    <!-- ===================================================================== -->
+    <div id="tokenModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 transform transition-all">
+            <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <button onclick="closeTokenModal()" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-900">Keamanan Akses Data</h3>
+            <p class="text-sm text-slate-500 mt-1">
+                Masukkan Token / Password untuk membuka menu pengisian & pembaruan data.
+            </p>
+            <div class="mt-2 p-2.5 rounded-xl bg-blue-50 border border-blue-100 text-xs text-blue-700">
+                <i class="fa-solid fa-circle-info mr-1"></i> Token default: <strong>arfan2012</strong> (bisa diubah di dalam menu).
+            </div>
+
+            <form id="tokenForm" onsubmit="verifyToken(event)" class="mt-5 space-y-4">
+                <div>
+                    <label for="inputToken" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">Token / Password</label>
+                    <div class="relative">
+                        <input type="password" id="inputToken" required placeholder="Masukkan token rahasia..."
+                            class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm pr-11">
+                        <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
+                            <i id="eyeIcon" class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                    <p id="tokenError" class="text-xs text-rose-600 font-medium mt-1.5 hidden">
+                        <i class="fa-solid fa-circle-exclamation mr-1"></i> Token / Password salah! Silakan coba lagi.
+                    </p>
+                </div>
+
+                <div class="flex items-center justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeTokenModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold transition">
+                        Batal
+                    </button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition shadow-sm">
+                        Buka Menu <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL 2: MENU ISI / UPDATE DATA IDENTITAS                             -->
+    <!-- ===================================================================== -->
+    <div id="identitasModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 my-8">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-user-pen"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900">Menu Isi & Edit Identitas</h3>
+                        <p class="text-xs text-slate-500">Perbarui data pribadi, kontak, dan keamanan token</p>
+                    </div>
+                </div>
+                <button onclick="closeIdentitasModal()" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="formIdentitas" onsubmit="saveIdentitas(event)" class="mt-5 space-y-4 max-h-[70vh] overflow-y-auto pr-1">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Nama Lengkap</label>
+                        <input type="text" id="editNama" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Tanggal Lahir</label>
+                        <input type="text" id="editTglLahir" required placeholder="Contoh: 21 Januari 2012" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Jenis Kelamin</label>
+                        <select id="editJk" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm bg-white">
+                            <option value="Pria">Pria</option>
+                            <option value="Wanita">Wanita</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Status</label>
+                        <input type="text" id="editStatus" required placeholder="Contoh: Pelajar" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Hobi</label>
+                        <input type="text" id="editHobi" required placeholder="Contoh: Main Game" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Nama Orang Tua</label>
+                        <input type="text" id="editOrtu" required placeholder="Nama Ayah & Ibu" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Alamat Lengkap</label>
+                    <input type="text" id="editAlamat" required placeholder="Contoh: Jalan Ujungsari" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                </div>
+
+                <div class="pt-2 border-t border-slate-100">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Kontak & Media Sosial</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">No. WhatsApp</label>
+                            <input type="text" id="editWa" placeholder="0812-3456-7890" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Username Instagram</label>
+                            <input type="text" id="editIg" placeholder="@arfan.official" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Username TikTok</label>
+                            <input type="text" id="editTiktok" placeholder="@arfan.gaming" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Pengaturan Token / Password</h4>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Ubah Token Akses (Opsional)</label>
+                        <input type="text" id="editNewToken" placeholder="Masukkan token baru..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-end gap-2 pt-4 border-t border-slate-100">
+                    <button type="button" onclick="closeIdentitasModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold transition">
+                        Batal
+                    </button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold transition shadow-sm">
+                        <i class="fa-solid fa-floppy-disk mr-1"></i> Simpan Identitas
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL 3: MENU ISI / UPDATE DATA PORTOFOLIO (6 KATEGORI)               -->
+    <!-- ===================================================================== -->
+    <div id="portofolioModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 my-8">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900">Isi & Update Data Portofolio</h3>
+                        <p class="text-xs text-slate-500">Pilih kategori untuk menambah atau menghapus item</p>
+                    </div>
+                </div>
+                <button onclick="closePortofolioModal()" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Tab Kategori -->
+            <div class="flex flex-wrap gap-1.5 mt-4 pb-3 border-b border-slate-100" id="portfolioTabs">
+                <button type="button" onclick="switchPortfolioTab('prestasi')" data-tab="prestasi" class="tab-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition">Prestasi</button>
+                <button type="button" onclick="switchPortfolioTab('keahlian')" data-tab="keahlian" class="tab-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition">Keahlian</button>
+                <button type="button" onclick="switchPortfolioTab('pendidikan')" data-tab="pendidikan" class="tab-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition">Pendidikan</button>
+                <button type="button" onclick="switchPortfolioTab('penyakit')" data-tab="penyakit" class="tab-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition">Riwayat Penyakit</button>
+                <button type="button" onclick="switchPortfolioTab('organisasi')" data-tab="organisasi" class="tab-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition">Organisasi</button>
+                <button type="button" onclick="switchPortfolioTab('karya')" data-tab="karya" class="tab-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition">Karya / Produk</button>
+            </div>
+
+            <!-- Form Tambah Item -->
+            <form onsubmit="addPortfolioItem(event)" class="mt-4 flex flex-col sm:flex-row gap-2">
+                <input type="text" id="newItemTitle" required placeholder="Judul / Nama item..." class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                <input type="text" id="newItemSub" placeholder="Keterangan / Tahun (opsional)..." class="sm:w-52 px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                <button type="submit" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition shrink-0">
+                    <i class="fa-solid fa-plus mr-1"></i> Tambah
+                </button>
+            </form>
+
+            <!-- Daftar Item Saat Ini -->
+            <div class="mt-4">
+                <span id="currentTabLabel" class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-2">Daftar Item</span>
+                <ul id="modalItemList" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                    <!-- Diisi via JavaScript -->
+                </ul>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 mt-4 border-t border-slate-100">
+                <button type="button" onclick="resetDefaultData()" class="text-xs text-rose-600 hover:underline font-medium">
+                    Reset ke Data Awal
+                </button>
+                <button type="button" onclick="closePortofolioModal()" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold transition">
+                    Selesai
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TOAST NOTIFIKASI (PENGGANTI ALERT)                                    -->
+    <!-- ===================================================================== -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 hidden items-center gap-3 px-4 py-3 rounded-2xl bg-slate-900 text-white text-sm font-medium shadow-xl border border-slate-700 transition-all">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toastMessage">Data berhasil disimpan!</span>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- JAVASCRIPT LOGIKA & PENYIMPANAN LOCALSTORAGE                          -->
+    <!-- ===================================================================== -->
+    <script>
+        // Data Awal (Default) sesuai permintaan user
+        const defaultData = {
+            token: 'arfan2012',
+            identitas: {
+                nama: 'Arfan',
+                tglLahir: '21 Januari 2012',
+                alamat: 'Jalan Ujungsari',
+                status: 'Pelajar',
+                hobi: 'Main Game',
+                ortu: 'Bapak Ahmad & Ibu Siti',
+                jk: 'Pria',
+                wa: '0812-3456-7890',
+                ig: '@arfan.official',
+                tiktok: '@arfan.gaming'
+            },
+            portofolio: {
+                prestasi: [
+                    { title: 'Juara 1 Turnamen E-Sports Antar Pelajar', sub: '2025' },
+                    { title: 'Peringkat 3 Besar Kelas Akademik', sub: '2024' }
+                ],
+                keahlian: [
+                    { title: 'Strategi Game & E-Sports', sub: 'Mahir' },
+                    { title: 'Desain Grafis Dasar', sub: 'Menengah' },
+                    { title: 'Editing Video Pendek', sub: 'Menengah' },
+                    { title: 'Kerja Sama Tim', sub: 'Baik' }
+                ],
+                pendidikan: [
+                    { title: 'SMP Negeri (Pelajar Aktif)', sub: '2024 - Sekarang' },
+                    { title: 'SD Negeri Ujungsari', sub: '2018 - 2024' }
+                ],
+                penyakit: [
+                    { title: 'Tidak ada riwayat penyakit berat', sub: 'Kondisi Sehat' },
+                    { title: 'Alergi debu ringan', sub: 'Terkendali' }
+                ],
+                organisasi: [
+                    { title: 'Anggota OSIS Bidang Olahraga & Seni', sub: '2025 - Sekarang' },
+                    { title: 'Komunitas Gaming Pelajar Ujungsari', sub: '2024 - Sekarang' }
+                ],
+                karya: [
+                    { title: 'Konten Kreator Highlight Game TikTok', sub: 'Video & Editing' },
+                    { title: 'Website Portofolio Data Diri Interaktif', sub: 'Web HTML' }
+                ]
+            }
+        };
+
+        // Muat data dari localStorage atau gunakan default
+        let appData = JSON.parse(localStorage.getItem('arfan_portfolio_data')) || JSON.parse(JSON.stringify(defaultData));
+        let pendingAction = null; // 'identitas' atau 'portofolio'
+        let pendingTab = 'prestasi';
+        let activeTab = 'prestasi';
+
+        // Simpan ke localStorage
+        function saveToStorage() {
+            try {
+                localStorage.setItem('arfan_portfolio_data', JSON.stringify(appData));
+            } catch (e) {
+                console.error('Gagal menyimpan ke localStorage:', e);
+            }
+        }
+
+        // Render seluruh tampilan halaman utama
+        function renderAll() {
+            const id = appData.identitas;
+            
+            // Navbar & Hero
+            document.getElementById('navName').textContent = id.nama;
+            document.getElementById('navStatus').textContent = id.status;
+            document.getElementById('heroName').textContent = id.nama;
+            document.getElementById('copyName').textContent = id.nama;
+            document.getElementById('heroBio').innerHTML = `Seorang <span class="font-semibold text-white">${escapeHtml(id.status)}</span> yang antusias dalam belajar hal baru, teknologi, dan memiliki hobi <span class="font-semibold text-white">${escapeHtml(id.hobi.toLowerCase())}</span>. Selamat datang di halaman portofolio digital saya.`;
+
+            // Identitas
+            document.getElementById('dispNama').textContent = id.nama;
+            document.getElementById('dispTglLahir').textContent = id.tglLahir;
+            document.getElementById('dispJk').textContent = id.jk;
+            document.getElementById('dispStatus').textContent = id.status;
+            document.getElementById('dispHobi').textContent = id.hobi;
+            document.getElementById('dispOrtu').textContent = id.ortu;
+            document.getElementById('dispAlamat').textContent = id.alamat;
+
+            // Kontak & Sosmed
+            const cleanWa = id.wa.replace(/[^0-9]/g, '');
+            const waNumber = cleanWa.startsWith('0') ? '62' + cleanWa.slice(1) : cleanWa;
+            const cleanIg = id.ig.replace('@', '').trim();
+            const cleanTiktok = id.tiktok.replace('@', '').trim();
+
+            document.getElementById('textWa').textContent = id.wa;
+            document.getElementById('linkWa').href = `https://wa.me/${waNumber}`;
+            document.getElementById('footerWaText').textContent = id.wa;
+            document.getElementById('footerWa').href = `https://wa.me/${waNumber}`;
+
+            document.getElementById('textIg').textContent = id.ig;
+            document.getElementById('linkIg').href = `https://instagram.com/${cleanIg}`;
+            document.getElementById('footerIgText').textContent = id.ig;
+            document.getElementById('footerIg').href = `https://instagram.com/${cleanIg}`;
+
+            document.getElementById('textTiktok').textContent = id.tiktok;
+            document.getElementById('linkTiktok').href = `https://tiktok.com/@${cleanTiktok}`;
+            document.getElementById('footerTiktokText').textContent = id.tiktok;
+            document.getElementById('footerTiktok').href = `https://tiktok.com/@${cleanTiktok}`;
+
+            // Render 6 Kategori Portofolio
+            renderList('listPrestasi', appData.portofolio.prestasi, 'fa-award text-yellow-500');
+            renderSkills('listKeahlian', appData.portofolio.keahlian);
+            renderList('listPendidikan', appData.portofolio.pendidikan, 'fa-school text-indigo-500');
+            renderList('listPenyakit', appData.portofolio.penyakit, 'fa-notes-medical text-rose-500');
+            renderList('listOrganisasi', appData.portofolio.organisasi, 'fa-user-group text-emerald-500');
+            renderList('listKarya', appData.portofolio.karya, 'fa-rocket text-purple-500');
+        }
+
+        function renderList(elementId, items, iconClass) {
+            const container = document.getElementById(elementId);
+            if (!items || items.length === 0) {
+                container.innerHTML = `<li class="text-xs text-slate-400 italic py-2">Belum ada data ditambahkan.</li>`;
+                return;
+            }
+            container.innerHTML = items.map(item => `
+                <li class="flex items-start justify-between gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-100">
+                    <div class="flex items-start gap-2.5">
+                        <i class="fa-solid ${iconClass} mt-1 text-xs"></i>
+                        <span class="font-medium text-slate-800">${escapeHtml(item.title)}</span>
+                    </div>
+                    ${item.sub ? `<span class="text-xs font-semibold px-2.5 py-0.5 rounded-lg bg-white border border-slate-200 text-slate-500 shrink-0">${escapeHtml(item.sub)}</span>` : ''}
+                </li>
+            `).join('');
+        }
+
+        function renderSkills(elementId, items) {
+            const container = document.getElementById(elementId);
+            if (!items || items.length === 0) {
+                container.innerHTML = `<span class="text-xs text-slate-400 italic py-2">Belum ada keahlian ditambahkan.</span>`;
+                return;
+            }
+            container.innerHTML = items.map(item => `
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-50 text-blue-700 border border-blue-100 text-xs sm:text-sm font-semibold">
+                    <span>${escapeHtml(item.title)}</span>
+                    ${item.sub ? `<span class="text-[11px] px-1.5 py-0.5 rounded bg-blue-600 text-white font-medium">${escapeHtml(item.sub)}</span>` : ''}
+                </span>
+            `).join('');
+        }
+
+        // =====================================================================
+        // LOGIKA MODAL TOKEN / PASSWORD
+        // =====================================================================
+        function openTokenModal(action, tab = 'prestasi') {
+            pendingAction = action;
+            pendingTab = tab;
+            document.getElementById('inputToken').value = '';
+            document.getElementById('tokenError').classList.add('hidden');
+            const modal = document.getElementById('tokenModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => document.getElementById('inputToken').focus(), 100);
+        }
+
+        function closeTokenModal() {
+            const modal = document.getElementById('tokenModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function togglePasswordVisibility() {
+            const input = document.getElementById('inputToken');
+            const icon = document.getElementById('eyeIcon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        function verifyToken(e) {
+            e.preventDefault();
+            const entered = document.getElementById('inputToken').value.trim();
+            if (entered === appData.token) {
+                closeTokenModal();
+                if (pendingAction === 'identitas') {
+                    openIdentitasModal();
+                } else if (pendingAction === 'portofolio') {
+                    openPortofolioModal(pendingTab);
+                }
+            } else {
+                document.getElementById('tokenError').classList.remove('hidden');
+            }
+        }
+
+        // =====================================================================
+        // LOGIKA MODAL IDENTITAS
+        // =====================================================================
+        function openIdentitasModal() {
+            const id = appData.identitas;
+            document.getElementById('editNama').value = id.nama;
+            document.getElementById('editTglLahir').value = id.tglLahir;
+            document.getElementById('editJk').value = id.jk;
+            document.getElementById('editStatus').value = id.status;
+            document.getElementById('editHobi').value = id.hobi;
+            document.getElementById('editOrtu').value = id.ortu;
+            document.getElementById('editAlamat').value = id.alamat;
+            document.getElementById('editWa').value = id.wa;
+            document.getElementById('editIg').value = id.ig;
+            document.getElementById('editTiktok').value = id.tiktok;
+            document.getElementById('editNewToken').value = appData.token;
+
+            const modal = document.getElementById('identitasModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeIdentitasModal() {
+            const modal = document.getElementById('identitasModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function saveIdentitas(e) {
+            e.preventDefault();
+            appData.identitas = {
+                nama: document.getElementById('editNama').value.trim(),
+                tglLahir: document.getElementById('editTglLahir').value.trim(),
+                jk: document.getElementById('editJk').value,
+                status: document.getElementById('editStatus').value.trim(),
+                hobi: document.getElementById('editHobi').value.trim(),
+                ortu: document.getElementById('editOrtu').value.trim(),
+                alamat: document.getElementById('editAlamat').value.trim(),
+                wa: document.getElementById('editWa').value.trim(),
+                ig: document.getElementById('editIg').value.trim(),
+                tiktok: document.getElementById('editTiktok').value.trim()
+            };
+
+            const newToken = document.getElementById('editNewToken').value.trim();
+            if (newToken.length >= 4) {
+                appData.token = newToken;
+            }
+
+            saveToStorage();
+            renderAll();
+            closeIdentitasModal();
+            showToast('Data identitas & kontak berhasil diperbarui!');
+        }
+
+        // =====================================================================
+        // LOGIKA MODAL PORTOFOLIO (6 KATEGORI)
+        // =====================================================================
+        const tabLabels = {
+            prestasi: 'Prestasi',
+            keahlian: 'Keahlian',
+            pendidikan: 'Riwayat Pendidikan',
+            penyakit: 'Riwayat Penyakit',
+            organisasi: 'Pengalaman Organisasi',
+            karya: 'Karya / Produk'
+        };
+
+        function openPortofolioModal(tab = 'prestasi') {
+            const modal = document.getElementById('portofolioModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            switchPortfolioTab(tab);
+        }
+
+        function closePortofolioModal() {
+            const modal = document.getElementById('portofolioModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function switchPortfolioTab(tab) {
+            activeTab = tab;
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                if (btn.dataset.tab === tab) {
+                    btn.className = 'tab-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition bg-blue-600 text-white shadow-sm';
+                } else {
+                    btn.className = 'tab-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition bg-slate-100 text-slate-600 hover:bg-slate-200';
+                }
+            });
+            document.getElementById('currentTabLabel').textContent = `Daftar ${tabLabels[tab]}`;
+            renderModalItems();
+        }
+
+        function renderModalItems() {
+            const items = appData.portofolio[activeTab] || [];
+            const list = document.getElementById('modalItemList');
+            if (items.length === 0) {
+                list.innerHTML = `<li class="text-xs text-slate-400 italic py-3 text-center bg-slate-50 rounded-xl">Belum ada item pada kategori ini.</li>`;
+                return;
+            }
+            list.innerHTML = items.map((item, idx) => `
+                <li class="flex items-center justify-between gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200">
+                    <div>
+                        <span class="text-sm font-semibold text-slate-800 block">${escapeHtml(item.title)}</span>
+                        ${item.sub ? `<span class="text-xs text-slate-500">${escapeHtml(item.sub)}</span>` : ''}
+                    </div>
+                    <button type="button" onclick="deletePortfolioItem(${idx})" class="w-8 h-8 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 flex items-center justify-center transition" title="Hapus">
+                        <i class="fa-solid fa-trash-can text-xs"></i>
+                    </button>
+                </li>
+            `).join('');
+        }
+
+        function addPortfolioItem(e) {
+            e.preventDefault();
+            const title = document.getElementById('newItemTitle').value.trim();
+            const sub = document.getElementById('newItemSub').value.trim();
+            if (!title) return;
+
+            appData.portofolio[activeTab].push({ title, sub });
+            document.getElementById('newItemTitle').value = '';
+            document.getElementById('newItemSub').value = '';
+
+            saveToStorage();
+            renderModalItems();
+            renderAll();
+            showToast(`Item ditambahkan ke ${tabLabels[activeTab]}!`);
+        }
+
+        function deletePortfolioItem(index) {
+            appData.portofolio[activeTab].splice(index, 1);
+            saveToStorage();
+            renderModalItems();
+            renderAll();
+            showToast('Item berhasil dihapus.');
+        }
+
+        function resetDefaultData() {
+            appData = JSON.parse(JSON.stringify(defaultData));
+            saveToStorage();
+            renderModalItems();
+            renderAll();
+            showToast('Seluruh data dikembalikan ke pengaturan awal.');
+        }
+
+        // Helper keamanan teks & Toast
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = msg;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3000);
+        }
+
+        // Inisialisasi saat halaman dimuat
+        window.onload = function () {
+            renderAll();
+        };
+    </script>
+</body>
+</html>
+```
